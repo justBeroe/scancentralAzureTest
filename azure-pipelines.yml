@@ -22,6 +22,12 @@ steps:
     scancentral -version
   displayName: 'Run BEROE scancentral version check'
 
+- script: |
+    echo SCA & rules version check.
+    sourceanalyzer -version
+    fortifyupdate -showInstalledRules
+  displayName: 'Run BEROE sourceanalyzer and rulepack version check'
+
 - task: FortifyScanCentralSAST@7
   inputs:
     scanCentralClientToken: '$(ScanCentral.ClientToken)'

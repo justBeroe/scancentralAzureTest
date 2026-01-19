@@ -13,10 +13,19 @@ pool:
  
 
 steps:
-- script: echo Hello, BEROE world!
-  displayName: 'Run a one-line BEROE script'
+# - script: echo Hello, BEROE world!
+#   displayName: 'Run a one-line BEROE script'
+
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
+    echo ScanCentral version check.
     scancentral -version
-  displayName: 'Run a multi-line script with scancentral'
+  displayName: 'Run BEROE scancentral version check'
+
+- task: FortifyScanCentralSAST@7
+  inputs:
+    scanCentralClientToken: '$(ScanCentral.ClientToken)'
+    sscCiToken: '$(ScanCentral.SscCiToken)'
+    buildTool: 'none'
+
+

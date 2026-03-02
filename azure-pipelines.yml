@@ -24,17 +24,20 @@ steps:
 - script: |
     echo ScanCentral version check.
     scancentral -version
-  displayName: 'Run BEROE scancentral version check'
+    whoami
+    echo WI scan.
+    wi.exe -u http://zero.webappsecurity.com/ -c -ps 4 -w test -f test.pdf -gp -ag
+  displayName: 'Run BEROE scancentral version check & WI scan'
 
-- script: |
-    echo SCA & rules version check.
-    sourceanalyzer -version
-    fortifyupdate -showInstalledRules
-  displayName: 'Run BEROE sourceanalyzer and rulepack version check'
+# - script: |
+#     echo SCA & rules version check.
+#     sourceanalyzer -version
+#     fortifyupdate -showInstalledRules
+#   displayName: 'Run BEROE sourceanalyzer and rulepack version check'
 
-- task: FortifyScanCentralSAST@7
-  inputs:
-    scanCentralClientToken: '$(ScanCentral.ClientToken)'
+# - task: FortifyScanCentralSAST@7
+#   inputs:
+#     scanCentralClientToken: '$(ScanCentral.ClientToken)'
     sscCiToken: '$(ScanCentral.SscCiToken)'
     buildTool: 'none'
 

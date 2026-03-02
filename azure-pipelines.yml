@@ -38,7 +38,7 @@ steps:
 # - task: FortifyScanCentralSAST@7
 #   inputs:
 #     scanCentralClientToken: '$(ScanCentral.ClientToken)'
-    sscCiToken: '$(ScanCentral.SscCiToken)'
-    buildTool: 'none'
+    # sscCiToken: '$(ScanCentral.SscCiToken)'
+    # buildTool: 'none'
 
 

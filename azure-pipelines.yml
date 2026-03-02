@@ -23,7 +23,7 @@ steps:
 
 - script: |
     echo ScanCentral version check.
-    scancentral -version
+    call scancentral -version
     whoami
     echo WI scan.
     wi.exe -u http://zero.webappsecurity.com/ -c -ps 4 -w test -f test.pdf -gp -ag

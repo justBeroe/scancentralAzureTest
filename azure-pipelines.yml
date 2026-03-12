@@ -21,13 +21,13 @@ steps:
 #   displayName: 'Run a one-line BEROE script'
 
 
-- script: |
-    echo ScanCentral version check.
-    call scancentral -version
-    whoami
-    echo WI scan.
-    wi.exe -u http://zero.webappsecurity.com/ -c -ps 4 -w test -f test.pdf -gp -ag
-  displayName: 'Run BEROE scancentral version check & WI scan'
+# - script: |
+#     echo ScanCentral version check.
+#     call scancentral -version
+#     whoami
+#     echo WI scan.
+#     wi.exe -u http://zero.webappsecurity.com/ -c -ps 4 -w test -f test.pdf -gp -ag
+#   displayName: 'Run BEROE scancentral version check & WI scan'
 
 # - script: |
 #     echo SCA & rules version check.
@@ -42,3 +42,14 @@ steps:
     # buildTool: 'none'
 
 
+# ----------------------------
+# Step 1: Start WebInspect API scan
+# ----------------------------
+- task: CmdLine@2
+  displayName: 'Start WebInspect API scan'
+  inputs:
+    script: |
+      echo Starting WebInspect API scan...
+      curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" ^
+      -d "{ \"settingsName\": \"Default\", \"overrides\": { \"startUrls\": [\"http://zero.webappsecurity.com/\"], \"loginMacro\": \"zerowebapps\", \"scanName\": \"BEROE API scan\", \"policyId\": 1 } }" ^
+      "http://up636306:8083/webinspect/api/v1/scanner/scans"
